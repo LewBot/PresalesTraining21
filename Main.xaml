@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="911.2,3670.4" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:upab="clr-namespace:UiPath.PowerPoint.Activities.Business;assembly=UiPath.PowerPoint.Activities" xmlns:upadb="clr-namespace:UiPath.PowerPoint.Activities.Design.Business;assembly=UiPath.PowerPoint.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="675.2,3996" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:upab="clr-namespace:UiPath.PowerPoint.Activities.Business;assembly=UiPath.PowerPoint.Activities" xmlns:upadb="clr-namespace:UiPath.PowerPoint.Activities.Design.Business;assembly=UiPath.PowerPoint.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="34">
+    <scg:List x:TypeArguments="x:String" Capacity="36">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -35,10 +35,12 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.Presentations.Activities</x:String>
+      <x:String>UiPath.Presentations</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="24">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="27">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -63,51 +65,61 @@
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="627.2,3565.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="685.6,3891.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="company" />
+      <Variable x:TypeArguments="x:String" Name="pptTemplate" />
+      <Variable x:TypeArguments="x:String" Name="screenshotPath">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">screenshot.png</Literal>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="about" />
+      <Variable x:TypeArguments="x:String" Name="execs" />
+      <Variable x:TypeArguments="x:String" Name="founded" />
+      <Variable x:TypeArguments="x:String" Name="hq" />
+      <Variable x:TypeArguments="x:String" Name="industries" />
+      <Variable x:TypeArguments="x:String" Name="latestAcquisition" />
+      <Variable x:TypeArguments="x:String" Name="latestInvestment" />
+      <Variable x:TypeArguments="sd:DataTable" Name="newsDt" />
+      <Variable x:TypeArguments="x:String" Name="pubpriv" />
+      <Variable x:TypeArguments="x:String" Name="symbol" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="585.6,241.6" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please enter company name:" Title="Company">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="644,241.6" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please enter company name:" Title="Company">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[company]</OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: UiPath - Crunchbase Company Profile &amp; Funding" sap:VirtualizedContainerService.HintSize="585.6,2378.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" Version="V1">
+    <uix:NApplicationCard AttachMode="SingleWindow" DisplayName="Use Browser Chrome: UiPath - Crunchbase Company Profile &amp; Funding" sap:VirtualizedContainerService.HintSize="644,2156" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" Version="V1">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,2121.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="610.4,1939.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="about" />
-              <Variable x:TypeArguments="sd:DataTable" Name="newsDt" />
-              <Variable x:TypeArguments="x:String" Name="industries" />
-              <Variable x:TypeArguments="x:String" Name="pubpriv" />
-              <Variable x:TypeArguments="x:String" Name="founded" />
-              <Variable x:TypeArguments="x:String" Name="hq" />
-              <Variable x:TypeArguments="x:String" Name="symbol" />
-              <Variable x:TypeArguments="x:String" Name="latestInvestment" />
-              <Variable x:TypeArguments="x:String" Name="latestAcquisition" />
-              <Variable x:TypeArguments="x:String" Name="execs" />
+              <Variable x:TypeArguments="x:Boolean" Default="True" Name="contOnError" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NGetText DisplayName="Get Text 'About'" sap:VirtualizedContainerService.HintSize="333.6,167.2" sap2010:WorkflowViewState.IdRef="NGetText_1">
+            <uix:NGetText ContinueOnError="[contOnError]" DisplayName="Get Text 'About'" sap:VirtualizedContainerService.HintSize="568.8,167.2" sap2010:WorkflowViewState.IdRef="NGetText_1">
               <uix:NGetText.Target>
                 <uix:TargetAnchorable BrowserURL="https://www.crunchbase.com/organization/uipath" DesignTimeRectangle="59, 582, 446, 42" ElementType="Text" FriendlyName="'UiPath is'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;chrome&amp;gt;div&amp;gt;mat-sidenav-container&amp;gt;mat-sidenav-content&amp;gt;div&amp;gt;ng-component&amp;gt;entity-v2&amp;gt;page-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;page-centered-layout&amp;gt;div&amp;gt;row-card&amp;gt;div&amp;gt;div&amp;gt;profile-section&amp;gt;section-card&amp;gt;mat-card&amp;gt;div&amp;gt;div&amp;gt;description-card&amp;gt;div&amp;gt;span' isleaf='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl css-selector='body&amp;gt;chrome&amp;gt;div&amp;gt;mat-sidenav-container&amp;gt;mat-sidenav-content&amp;gt;div&amp;gt;ng-component&amp;gt;entity-v2&amp;gt;page-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;page-centered-layout&amp;gt;div&amp;gt;row-card&amp;gt;div&amp;gt;div&amp;gt;profile-section&amp;gt;section-card&amp;gt;mat-card&amp;gt;div&amp;gt;div&amp;gt;description-card&amp;gt;div&amp;gt;span' isleaf='1' tag='SPAN' type='' /&gt;" ImageBase64="" InformativeScreenshot="e8294e79e13f84491850b95ec38201c3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*Crunchbase Company Profile &amp;amp; Funding' /&gt;" SearchSteps="FuzzySelector" Text="UiPath is a software company developing robotic process automation and artificial intelligence" TextMethod="AttributeText" TextSelector="&lt;webctrl tag='SPAN' type='' /&gt;">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target DesignTimeRectangle="109, 521, 81, 36" FriendlyName="'About'" FullSelectorArgument="&lt;webctrl idx='1' tag='H2' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H2' aaname='About' check:text='About' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFUAAAAoCAYAAACPSbZFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAATBSURBVGhD7Zm/a9taFMffn6NNYPBQyBBoJnt5goAFGV4nQQdDoOYNLxSCKBSRJVlqCo8sQR0e8lAcCHgoeAheAi4ENJR0CC50MAQ0BDQEzruyr6Vzjq5kJbFaY/SFM+T+0r0f33vuuSd/QKWVq4JagiqoJaiCWoIqqCWoglqCKqglqFyowRjck2M4lja4leUbrsJQp/4IRpfSvgWydIl+emBpGmjSnCtZvuEqBvXBh+7LBI72sgv+g6zLUwU1W+GlDTqCo2l6MUAbBXUKg7cGGLvS3g5EiVoFoIYwPMRA56a/G4maJdowqJ6FGFjeM6De9aGNwCTWgcEy11pBVWvas5KBWhZYyLe2z5dQzYP6EEJwF0BYxDerFAbP6/9orQzqBNxWMpD5aQI3Z0YycMsVLXKkgBr4Hth7W8RH11sdOL3MmiJS4EP/qA3NF0nfWf9GG5zeGKZZgL+eJr5Q2OlXWc40/lfhM1HfrRr6bm0rLj+4oHPPh+p3YSeevAXeT1H23QUjLjPBzYs9GVRrvw119Dc1HYyTcaafng4dMPCiVNY4gMEP2QHryiHtstzQ+AiNtdiJrK/KrN4joPofdpLO8Xanu3fngz8rVYpBXZi+LXdDo87qdOhcpF1KKBbWZO22/pRjbOuoXFjDgfG97LjQc6CudKeGI7DRINh/Tj6ZyeB5MWsKahPsL3QCge+ChSfLx4ti5AaqF7uxz07H5PyAQE9FJs+BGmsFPpXGpm3o38mKSASWDvZlxqFlUM2zG1lBFZy34zaatgNdtPmDiw6pc67U3/I/NlE7Nt/1gBrA4A0a4M1AlGCxDxwO1b6QQc1aDAQD6KB2r/5bXH8sRt51Qf2zCLFvETeyFlBZbKryc3R3sZ2xUFGoApW7m7TTjsaynD2P43KVaFtdXHqx1gEq8ZmaDUPVNmTg+Q04U2GobMIxvDE4qL+R4T7myhpD6PdDpbd7YVPFrCuGqvzhYq0z1Gscmz7G6AUzU2GoE/D+QmPFQJ5+/NcKKolNH2mpmLUo1HAINmqXHHN2YeYshF921mfUkjxYfjVUFpvquTsjErudazaMsP9lULNyBeEQh280rUhyD9EL7rusYEq1w7Esm4etvCTYWlYFNVpc3IktLks0nmUxK1uMVrPA/cYWNBW7FAf3PPi/F/X4h94T9fzFdCu+g9vwEPBhRHxzBGTCHizTLzZ9taWgsVOzewo3GY8eBDWA/j7qVDS7z3a3tt9PFsShzkw8Mfc64Jwcg/O3SZ9+oo4cW6npZ4smyV+Y0Hk//79XNAbJJ4gfzku9/0MYvaPPWX3bAjv639n7DrxKPZeFKXai/5G6xigR5Jw40DmjJzqBygDkvumZxkd4wihmJWMaYO0bFA6z5j+D1A6aK4SbMwZWZTUTuteqoy30g+7mtDXBeo0ycKrjfeuCSfpIY24yhkpjU3GTX8uKIhK3K15wlCKciUCNktoCTs8Gk6XutJoBBz0fgiUnI/D74LymacO51cE89MBXu+xEt32wW+ldWW/Z4InOE+yXM3xmlC1LzT8L6q9WeDdPMj8p0SwT1E/uf4/6c/9cRDLBnvX93wZ1k1VBLUEV1BJUQS1BFdQSVEEtQRXUElRBLUEV1JUL4H+lr5T7xR5egQAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" Text="About" TextMethod="AttributeText" TextSelector="&lt;webctrl type='' tag='H2' /&gt;" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -117,7 +129,7 @@
                 <OutArgument x:TypeArguments="x:String">[about]</OutArgument>
               </uix:NGetText.Text>
             </uix:NGetText>
-            <uix:NGetText sap2010:Annotation.AnnotationText="regex selector matching for &#xD;&#xA;Private|Public" DisplayName="Get Text 'Public'" sap:VirtualizedContainerService.HintSize="333.6,211.2" sap2010:WorkflowViewState.IdRef="NGetText_3">
+            <uix:NGetText sap2010:Annotation.AnnotationText="regex selector matching for &#xA;Private|Public" ContinueOnError="[contOnError]" DisplayName="Get Text 'Public'" sap:VirtualizedContainerService.HintSize="568.8,211.2" sap2010:WorkflowViewState.IdRef="NGetText_3">
               <uix:NGetText.Target>
                 <uix:TargetAnchorable BrowserURL="https://www.crunchbase.com/organization/uipath" DesignTimeRectangle="869, 743, 86, 25" FriendlyName="'Public'" FullSelectorArgument="&lt;webctrl aaname='Public|Private' matching:aaname='regex' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Public|Private' matching:aaname='regex' tag='SPAN' /&gt;" ImageBase64="" InformativeScreenshot="8826589ba43518db6c577ef25b54b619.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='UiPath - Crunchbase Company Profile &amp;amp; Funding' /&gt;" SearchSteps="FuzzySelector" Text="Public" TextMethod="AttributeText" TextSelector="&lt;webctrl type='' tag='LABEL-WITH-ICON' /&gt;" />
               </uix:NGetText.Target>
@@ -130,16 +142,16 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uix:NGetText>
-            <uix:NExtractData ContinueOnError="True" DataTable="[newsDt]" DisplayName="Extract Table Data" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='articleTitle' attr='text' name2='articleUrl' attr2='href'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' idx='2'/&gt;&lt;webctrl tag='press-reference' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='span' idx='2'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="333.6,167.2" sap2010:WorkflowViewState.IdRef="NExtractData_1" MaximumResults="3">
+            <uix:NExtractData ContinueOnError="[contOnError]" DataTable="[newsDt]" DisplayName="Extract Table Data" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='articleTitle' attr='text' name2='articleUrl' attr2='href'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' idx='2'/&gt;&lt;webctrl tag='press-reference' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='span' idx='2'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="568.8,167.2" sap2010:WorkflowViewState.IdRef="NExtractData_1" MaximumResults="3">
               <uix:NExtractData.Target>
                 <uix:TargetAnchorable DesignTimeRectangle="1134, 582, 549, 369" FriendlyName="'News•May 19,'" FullSelectorArgument="&lt;webctrl tag='TIMELINE-CARD' /&gt;" InformativeScreenshot="c5abd80303d6def45edb412e999626e7.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*Crunchbase Company Profile &amp;amp; Funding' /&gt;" SearchSteps="Selector" Text="News•May 19, 2021 Silicon Angle —  UiPath builds AI-driven task mining engine into its RPA platform" TextMethod="AttributeText" TextSelector="&lt;webctrl tag='TIMELINE-CARD' type='' /&gt;" />
               </uix:NExtractData.Target>
             </uix:NExtractData>
-            <uix:NGetText DisplayName="Get Text 'Industries'" sap:VirtualizedContainerService.HintSize="333.6,167.2" sap2010:WorkflowViewState.IdRef="NGetText_2">
+            <uix:NGetText ContinueOnError="[contOnError]" DisplayName="Get Text 'Industries'" sap:VirtualizedContainerService.HintSize="568.8,167.2" sap2010:WorkflowViewState.IdRef="NGetText_2">
               <uix:NGetText.Target>
                 <uix:TargetAnchorable BrowserURL="https://www.crunchbase.com/organization/uipath" DesignTimeRectangle="54, 637, 522, 100" FriendlyName="'Artificial Intelligence…'" FullSelectorArgument="&lt;webctrl tag='CHIPS-CONTAINER' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='CHIPS-CONTAINER' type='' aaname='' /&gt;" ImageBase64="" InformativeScreenshot="513d54e42a70c3bd2193398045eba0c1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='UiPath - Crunchbase Company Profile &amp;amp; Funding' /&gt;" SearchSteps="FuzzySelector" Text="Artificial IntelligenceDeveloper ToolsEnterprise SoftwareMachine LearningRobotics" TextMethod="AttributeText" TextSelector="&lt;webctrl tag='CHIPS-CONTAINER' type='' /&gt;">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target DesignTimeRectangle="59, 619, 83, 21" ElementType="Text" FriendlyName="'Industries'" FullSelectorArgument="&lt;webctrl aaname='Industries' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Industries' tag='SPAN' type='' check:text='Industries' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFcAAAAZCAYAAABEmrJwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAQ+SURBVGhD7VdRa+JYFN5fK4IvQYQyYakLYUAK04WwEApSRkp9qIVxwcyDwjgUlyF9EIbA+LAERFiH4lAIS6AE5Ntz7z3RG6vVaZPZZckHF/Xk3HtOvnvOd68/oUBuKMjNEQW5OaIgN0cU5OaI/MmdDtE8b6L5zkfIpv8EljGiB/6eE1LkLj6conZUQ+3SZ0sGGDsolUooHbuYs+nfR4B2lXIqmejM2JQDUuTOe3VFxNmYLRngB5D7/UWRkGug/SebcsD/gtxn5f2jZWFbkuHnrtTM9qc54rsx3EvST6Gh1x4WMTtp0H3agwnC201yZxiK+edd+LoIhz660j4kDw3xApNBR8UUa/bG67g8x7YMFeNVQ/oMp/Ih/Hcc524B71pfe0cOAnGI4CaJ14Z7O0O45Gcawqm35uK8g9H08Ymyl9yVrUptV6ZP8T0ZrzoItMARVamhPxcjmbMidwxHPqvD/SoNCl9d1KXdIQ9GRL6yfTdG9RRDMXc1Jz0cucAc7rH4bcBYrZGsvSOHHfEqryl37T3nPeuRjxjm5QR6vR1ObtlEU1QvBYmnXViSNAOtL+y49NEyVBDriiqWosT3E3QsZXsOuZMLVZHm2wkiYViG8Byu0m05pmQhIZdG1aIu8uDdBnxj2ZZDiOGJ8jcvxjJ/PMzQ5fytAVdmOERDzC030P+mTPGsy7mn3+lwch2PLQqew0HfL5Thc1P5GS34ehs90tzDyR2fqRj13zW1vg+IJCLKp41m09Pk1rYcWltymHVgCttm/l9aqhtPhmpjkjwNB57ccYEYc19snofgnk2Ew8lNJa69eE+9+OI9t8rGJryE3Jg2LJGZClWffenCC8JU6wk8Te5GHIktOSRng0FxpI7y+M1SORyRBEpHWjfpxnIF5omDDp0t8y2HY2bk7vJ7CbkC8Z2H9omJiq73NQcjbkmBLMhdrbFzaHmRPE0GDqxqRXtegXUdKPliZEbuaueT9knwQnLXoKvT3QTuG9bcN+s4WZD77CvjQ4TZpyZMPoN0CcqO3Ps+LE64+5cyCUQ3p2r+KukAnSM1V53qChFtjpKAhFwfTZnwBjmkgZXUehmR++DBZoKcsV5/EVXpCDPWopX8pWKF6DfE3PQ7ZUcuVZZ/zlVVqSvdsuuKCDE0Mvy3T/hplRtcmcpWa6jT/saF87PyM6/Xt+H4D1v50Y3mlNZT99zvJJewumKRltZtpbn2sWr92gVfs6IRbwL5nLkY0SHWv2RdLtvwNO3NkFzCco7hrzXlLwaR1x60Vbvr7Rb5aHPSyq8G54paS/7WZSFC0LNRq7CfGOLF6W9u6mJPcd3X6/XS99zDyRUFMvvooL4v3jcPrV90vaUD98hGPylvRorczEA6FIbRo1N9E3EUHuQn9Tbc7xv/TT7R/tUOgVxrX27yPcOdf6PzIbeAREFujijIzREFuTmiIDc3AP8APH4UyePLmDsAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" Text="Industries" TextMethod="AttributeText" TextSelector="&lt;webctrl tag='SPAN' type='' /&gt;" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -149,15 +161,81 @@
                 <OutArgument x:TypeArguments="x:String">[industries]</OutArgument>
               </uix:NGetText.Text>
             </uix:NGetText>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Company: &quot; + industries]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Industries: &quot; + industries]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Status: &quot; + pubpriv]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Founded: &quot; + founded]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Headquarters: &quot; + hq]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;Execs: &quot; + execs]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;Stock Symbol: &quot; + symbol]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[&quot;Latest Investment: &quot; + latestInvestment]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_9" Message="[&quot;Latest Acquisition: &quot; + latestAcquisition]" />
+            <uix:NGetText ContinueOnError="[contOnError]" DisplayName="Get Text 'Founded'" sap:VirtualizedContainerService.HintSize="568.8,167.2" sap2010:WorkflowViewState.IdRef="NGetText_4">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.crunchbase.com/organization/uipath" DesignTimeRectangle="59, 787, 39, 21" ElementType="Text" FriendlyName="'2005'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;chrome&amp;gt;div&amp;gt;mat-sidenav-container&amp;gt;mat-sidenav-content&amp;gt;div&amp;gt;ng-component&amp;gt;entity-v2&amp;gt;page-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;page-centered-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;row-card&amp;gt;profile-section&amp;gt;section-card&amp;gt;mat-card&amp;gt;div&amp;gt;div&amp;gt;fields-card&amp;gt;ul&amp;gt;li&amp;gt;field-formatter' tag='FIELD-FORMATTER' idx='3' /&gt;&lt;webctrl tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl css-selector='body&amp;gt;chrome&amp;gt;div&amp;gt;mat-sidenav-container&amp;gt;mat-sidenav-content&amp;gt;div&amp;gt;ng-component&amp;gt;entity-v2&amp;gt;page-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;page-centered-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;row-card&amp;gt;profile-section&amp;gt;section-card&amp;gt;mat-card&amp;gt;div&amp;gt;div&amp;gt;fields-card&amp;gt;ul&amp;gt;li&amp;gt;field-formatter' tag='FIELD-FORMATTER' /&gt;&lt;webctrl tag='SPAN' type='' /&gt;" ImageBase64="" InformativeScreenshot="94d20655d4980ffc1b66bc73f8d92c46.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='UiPath - Crunchbase Company Profile &amp;amp; Funding' /&gt;" SearchSteps="FuzzySelector" Text="2005" TextMethod="AttributeText" TextSelector="&lt;webctrl tag='SPAN' type='' /&gt;">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="59, 764, 76, 21" ElementType="Text" FriendlyName="'Founded'" FullSelectorArgument="&lt;webctrl aaname='Founded ' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Founded ' tag='SPAN' type='' check:text='Founded' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFAAAAAZCAYAAACmRqkJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAOYSURBVGhD7VddS+NAFN1fW4SyEEpBLGIewkIQ7EIQglCEspgHK2weWh8itCIVaR8KErAPiyCBZpGKEJaABMrZ+UqdtI1a07Lubg5caG7OvTP3zOTO9BNyZEIuYEbkAmZELmBG5AJmxL8h4F0HtcMaat9dBMKVCYELm+Y77MATrjQkBHSPyihvplu1PRbMD4aBiUKhgMJOC75wZcLPFlSar2BiIFwL4VpJAQcHNCjd1OZKprd6/CkBybgLBfywQqXhrxRwEsC7aPDeQ8xqDjCOxDuB4Nrm78+TncQ75zH2Ne9YMc+68hHdD9A64u9rJ725nBQyxzobIuinCxiN5HwOhvcLEgYeuifSmN66BQxd1Lc5N2FFDa2R4BD4TZX7D5LTmB1nyiuRXrshcsW21cDthNEYQjJpRX5PLY6ZEdBvakke45ZRG4SCQTBqQZsdc/r8TgErx2RVgyBpYbxyEeEpjKfsOfCeqCvA8FhMtlTHUBS8tIAbFdToLiTx0Z0tClNQv2E0suvJwik8VqNzJFOKHodoaNyXEPCmzoUuVeHc0blHCK6E+EodLptjAOcLj1X2u/BpLU8+uvu8vncLuNBiEYIOdObT4DxyF4eHxhbnmoK6tIBmjz3H6Jmcp52K0/+6xnlTAQRIIcw/FTBCb1/EnskXmwCdXeoXi3JPdh+Nm60law9UNIP3A9niPhYXsW3P9ZtUYd4q4Cu88anY5TNCzwvowxYtprKbrEMXi2xckl2ZVstaD5G5yT5j3QKm8ebnNIBJn18wljOtlrUKOLJRocnJZzQULo4IXYPH623+2axaQMSn7W4n+Y9jTggfrR0eG7eThUirZb3XmFtYJcpTYPYXnWbP/SS6NFi+xApPyOcliltawEdH9CwVtnTahxfVuXG8kwr3acQn98uHLpy+kH96KM3U8sNCmY2zFgGlqwS5Eugm7S0G1CKPVb5JazktuICybhKeCb3Mn+Vx3iwg2eXuoTghiyoM2tcMFUWRL7FQIfmM2UIXUNzUYVKuqfNr0oYO54HT/LivxrXEHJZzTQJSjPt1qJ/jgYiRCVSbt5DWkcFvVxN3u6LegLXHfy8vIAHZwZ2v5Wk+KqR1ZvFPbraXBS4ausQlVtw04HjyZTqEeyQtAq2jbYseuqSA70H0i94TQ7I3XsAkQkjukiG9Z60KT+Hr48aIKPeV8RmH5JM/9zcgs4D/O3IBMyIXMCNyATMiFzATgN/uBaA11j8oNwAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" Text="Founded" TextMethod="AttributeText" TextSelector="&lt;webctrl tag='SPAN' type='' /&gt;" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[founded]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Financials'" sap:VirtualizedContainerService.HintSize="568.8,167.2" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.crunchbase.com/organization/uipath/company_financials" DesignTimeRectangle="397, 304, 80, 21" ElementType="Text" FriendlyName="'Financials'" FullSelectorArgument="&lt;webctrl aaname='Financials' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Financials' tag='SPAN' type='' check:text='Financials' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFQAAAAZCAYAAACvrQlzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAASFSURBVGhD7VjLK29RFL5/joGilJEkRUJKZKBExIQJiSSivBLCQF7lVUgGHsmA5FEGMiBEKHmVd8g7rNu3nHXuOft3Dr9777m/dDtf7fLb+1uP/Z211975QS4chSuow3AFdRiuoA7DFdRhuII6jD8S9OHhgd7e3rRf3xevr6/09PSk/fIOd3d31NPTQ21tbXR6eqrNeg9dUASurq6mpKQk27G6ukpTU1Pk7+9PNTU1nPB3xe3tLWVmZlJoaChtbW1ps1/j6uqK9xoeHk67u7varPfQBX18fKT8/Hzy8/OzHUtLS7qg5eXl9PLyoll/P4igwcHBtLa2ps1+jX8iKIT7DP/zkfe5oMvLy9Tc3MyVCqDPoN/09/fT5eUljY2N8XpraysdHBwwR4CPsLm5yWvgdHV10dHRkbb6q391dnbSyckJzc3NMa+lpYU2Njbo/f1dY34AVSjxwEHe0obseiHWwQMfdgMDAyyiwE5QFBH2DBsMxMWcit8WdHh4mDl1dXX8G0ERHEcrOjqa12Sgf0EIAP6rqqpM6xiwW1xcZI5sJigoiGJiYkw8tJnZ2VnmATs7OxQVFWXiYBQXF9P9/b2lMJjLycnxsIEf+BOOand2dkYpKSkeduDt7+8zR2Ap6MzMDDs2DqwDdoJiw/jqqJrr62sqKChgHqoRmJ+fZ05WVhZXDKoNFQjx0tPT6ebmRt8M7MrKypiHuI2NjTxXUlLCfRv+MzIy2F9fXx9zwM3Ly2PexMSE7ssoDE6R+JG2NTg4aPJtZYc9gNPR0cEV/vz8TPX19TzX0NBgOjleX0oQErATNDExkS4uLngOQNWBV1hYyH0M/pEsjqIAfNhFRETQ3t6evpmwsDC9YgD8jbnk5GQWE68NfIjs7GyTP4mJ3KyEARfzUhyA6tvKDv5EAxEP7Q3xcOEZXzuWghYVFem9QgZ6J2AnKJJAMgK0DfDgUzaA6h0ZGeEqBT8+Pp4CAgL05K02A6gxRkdHTTlYwc7X+fk59fb2UmpqKq/HxcVxpYtvKzvsBa0JMRMSErgvb29vW17MjvVQSUigCooKjI2N5eRzc3P5I9XW1nKfleTtRFBjqDlYwU6YkJAQ/oilpaWcA55/qHbxbZcDLli0BREWIy0tjQ4PDzXGB3wmqPSh7u5u/dioydttRo2Bywm+KioqTMdNeqAcbaMvrEEQ2E1PT2sWnr7tchCgKo+Pj7nHw5f6HveZoODj99DQkMYgPjawleTtNqPGwM2KmxkVb7xlcRkhRlNTk4cv4/7kVQEsLCx8WqHoq+ivak4rKysUGBio70/gM0EnJyf5uOPIVVZW8sDf4Eiy6mYEagxUeHt7O9tGRkZyLjjCOMryBFJ9fWaDOfFtZYeXhHDGx8f5PYpXBubwcjDCZ4LiaOK4ywbQi1BJ8vwBX92MwCoGni7wp/a09fV1Xrfyhfcp/l+BeODjdofIuJiEZ2WH3HGZgi+xEBfxkYcRuqC+gvQ5Y9/5G6Cn4Vgan09fAR8YNsb+6w0kFobVDQ/4XND/Ha6gDsMV1GG4gjoKop/J6SxjmqNcqAAAAABJRU5ErkJggg==" InformativeScreenshot="1f743d31c229e1397a9b46ffa04a64f0.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='UiPath - Funding, Financials, Valuation &amp;amp; Investors' /&gt;" SearchSteps="FuzzySelector, Image" Text="Financials" TextMethod="AttributeText" TextSelector="&lt;webctrl tag='SPAN' type='' /&gt;">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="34, 167, 175, 25" ElementType="Icon" FriendlyName="'SVG'" FullSelectorArgument="&lt;webctrl idx='1' tag='svg' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='svg' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALMAAAAdCAYAAADhAl1tAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAYrSURBVHhe7Zo/jxxFEMX5GHwCPgF8AIRTJEQIiTNnENipgRhMCBKXQWBDgBMHliMIMBFIIDkBQQISIjV2vvh3tzV6+1z9Z+ZmB3HXT3ra3enu6q6q1zU9c/fCiy9f2Q0OXgQOMQ9eGA4xb0DFm9eup31avHXyxd7CGbI+l51DzBtQMcR8PA4xb0DFEPPxOMS8ARVDzMfjEPMGVAwxH49DzBtQMcR8PA4xb0DFEPPxOMS8ARWXScyvvXUtvT6Hr7z+9u6lV99I25xFMWPk5PbXuz/++nsfvjM8+uW33UeffV6dgLH0CZLA+998t7dwBuy++8GHxTFqT9nqx1zaHnM//ufJfubd6e93ZO4W8fXmrU92D3/4aW/hDD2xgAp89rjynWv4lo2HmZix5WvCzy/vPZi9abJ8851YhS3WEHHN1kocaFMbgDWpnRbxi9g6uEYeSvFOxcyiNfkZaFcxKll0D3S8j1F7ylY/T3oNBKdVPa7eeP9csYBzULLjfrlgMiDq1kaDJ3fu7keU4ZvGhUkce9Z08+NPD8YpsZGJ2EG8s7w9J+avngVgDrLg94j58ZOnB4H+L8QMSEAp4fg2B4giszMXbCC3MdevAOKoCfrRr7/ve86Di3mOncw/xNkqGopM0AdiZtc4/nyWbAIJSRa/He5YJmbEy3gEwif2amO0TblEzOEDc7NZWYsiqxYlHxhfi0WWKEfEgnmx5XbYYG4j8yvw/Y8/n9rjMwMV2u3BrHBhg7lgFquA5hyfFfe/fTgdQ9hIris2WIwNagyYk/l1E2LP1+txmsTMQN8ZWZLp1zLqQmChteoAjyVmAutzn1YBSRIJ1HboAsNnt5PFghh6PwXzekWhv1c2t5GJmTF+dmUcPjtUfNDjyLq8D8zWBrSvr03HB9lsCm1zsWdHiKDfLfVkMInZDbLAaMvoVUArkgdKJyzRx2R9YKufB7YUmFpwPWCIQ9udLh73V8G82hb06ubCcr8QmAte6WtyH3wT+nxK5vHNrf17Y16ibhbWlfVRan/1axKzipNdGtdLxEEcCmqF4LdCHS/Rx2R9YKtfT5WAtX6e6OzJXVmLBVRkxxCIDYX38/WW7ATdHncMbW/dmZy+wfEz2vDXwdGGN0Y9wlZwBOFhs0Z/0Aw7k5gVPc7V6IJTx0v0MVkf2OrXK+aaHd3Y540FVNRiocAPbev1S6l+AATOdRe6z5XRx7gfvj4FG6n0utDzsARhKxVzT6mv0RfYszt9TNYHtvpdBjF7lS3Rj1KRBz4VPWKGiswP7ha+gRz+MOp5WIKwNYlZzyHZ0+Yc+gJrCQz6mNKt3ft5+9pizt4szKWiFgtFTcxA20r045K2KVrPBNA3QM0PcsexhPn9rA3cNwVt2J7DsDOJ2R1vVVN2oZ5j9AzHBAqdsMTeMd7P29cQs1e01vpp11j4WyBFzZaiJebWQzXHAn07hai03d9QtJ4LXB+tmCjpq/N5gVDBn+dUMImZCRW1l+0IXQMFtK/b6nHcd37pqb9WbeAaYva1EPxSLLjuDyReCBS1WChaYib+tYLjbzPcXvbut+SjP/wB9YP22Mj82VrHBmt5mVtI0UbMpzqZxAz9vEOSrl5/b2rHWZ5QXcguvCVihvqEDfT/Hvjkt8NtrCFm6LHAZ3zXhJNEj0V2xlasJWaQrYk7JMJUEFftA/ntRwDs8b8PiIlKTe4542ZwMSv8rsFcuia/SzCX5p51lN7W+F1T5zoQM064oFrg9uGBWirmLGEttGx4e7AlZnyaGwv6Z7drxZpi7oWLK0i+l0L9yGJFIWQjUD0d7hv0DQHCBkUMO1440J7aOBAznCNojGXJWyrm0x1sZ7kW3MZaYoZzYkE/+md2FFuLuSTkIBWw10eF+5GJMUNW/ObaAJmd58QMEaifuRQ4T7kvLWqpmCE2SVwpwH779/FrihmyHj/TOYhVKRZQsZaYazECxKm0uZzku+YjxwIXWuYH12rFqKaZIDY8x4pYSzY2FXMQJ3lQYBFMwCeGWgtai1QNkgb5vtW8GSMWCJdY8Mnv7M60JSNGrIf88H3pmogv+Y2Yw94NoWSM2kGgc3OHD2oDP1trqYp5cPD/xCHmwQvCK7t/Abuos15w0rS0AAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NTakeScreenshot DisplayName="Take Screenshot 'Investors'" FileName="[screenshotPath]" FileNameMode="None" sap:VirtualizedContainerService.HintSize="568.8,243.2" sap2010:WorkflowViewState.IdRef="NTakeScreenshot_1">
+              <uix:NTakeScreenshot.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.crunchbase.com/organization/uipath/company_financials" DesignTimeRectangle="34, 621, 1088, 504" FriendlyName="'IFRAME-CARD'" FullSelectorArgument="&lt;webctrl tag='IFRAME-CARD' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='IFRAME-CARD' type='' aaname='' /&gt;" ImageBase64="" InformativeScreenshot="61038cb9f75317cc7f8b6c7d8d6bf4ad.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='UiPath - Funding, Financials, Valuation &amp;amp; Investors' /&gt;" SearchSteps="FuzzySelector">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="109, 1276, 124, 36" FriendlyName="'Investors'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;chrome&amp;gt;div&amp;gt;mat-sidenav-container&amp;gt;mat-sidenav-content&amp;gt;div&amp;gt;ng-component&amp;gt;entity-v2&amp;gt;page-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;page-centered-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;row-card&amp;gt;profile-section&amp;gt;section-card&amp;gt;mat-card&amp;gt;div&amp;gt;div&amp;gt;h2' idx='3' tag='H2' /&gt;" FuzzySelectorArgument="&lt;webctrl css-selector='body&amp;gt;chrome&amp;gt;div&amp;gt;mat-sidenav-container&amp;gt;mat-sidenav-content&amp;gt;div&amp;gt;ng-component&amp;gt;entity-v2&amp;gt;page-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;page-centered-layout&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;row-card&amp;gt;profile-section&amp;gt;section-card&amp;gt;mat-card&amp;gt;div&amp;gt;div&amp;gt;h2' type='' tag='H2' aaname='Investors' check:text='Investors' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" Text="Investors" TextMethod="AttributeText" TextSelector="&lt;webctrl type='' tag='H2' /&gt;" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTakeScreenshot.Target>
+            </uix:NTakeScreenshot>
+            <If Condition="[pubpriv.Equals(&quot;Public&quot;)]" DisplayName="If public company" sap:VirtualizedContainerService.HintSize="568.8,212.8" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Assign sap:VirtualizedContainerService.HintSize="262.4,61.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[pptTemplate]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">templates\Crunchbase_PublicCompanyOverview_Template.pptx</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Then>
+              <If.Else>
+                <Assign sap:VirtualizedContainerService.HintSize="262.4,61.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[pptTemplate]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">templates\Crunchbase_PrivateCompanyOverview_Template.pptx</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Else>
+            </If>
+            <Sequence DisplayName="Logs" sap:VirtualizedContainerService.HintSize="568.8,22.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Company: &quot; + company]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Industries: &quot; + industries]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Status: &quot; + pubpriv]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Founded: &quot; + founded]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Headquarters: &quot; + hq]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;Execs: &quot; + execs]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;Stock Symbol: &quot; + symbol]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[&quot;Latest Investment: &quot; + latestInvestment]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="568.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_9" Message="[&quot;Latest Acquisition: &quot; + latestAcquisition]" />
+            </Sequence>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
@@ -165,7 +243,40 @@
         <uix:TargetApp BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEpSURBVDhPY2Bqu9TO1HLxD1P7xf8kYZAeoF4GsjTDMFAvA1YJEjBBA0LXP/ivOv06VjkQJmjAgYdf/geuvY9VDoQxDODuvvxfatJVOB9mgOyUa/85uy6hqAVhFAPiNj/6/+XX3/8gcPzp1//iE6+CDXj3/Q9Y7MOPP2AvIeuBGyDYd+X/99///gesuQ92xbyLb/+X7H0GNmDFtff/ubovgS34/PMvWB7DAL05N8EGsHRA+CANvD2XwQbEbHoIFmPvvPT/77///xWmXsM0ACR57/1PsM1RGx/+vwtkF+15Cjbg+psf/8OATl9y5R2YzQzVg2IACGvMvPF//c0P/08A/V+5/zlYYevRl//nX3z3/+Szr2ADFKehRimKAeTgwWAAxZmJoux8qR0A0QiIOXBRVqYAAAAASUVORK5CYII=" InformativeScreenshot="7d33f47223dba9aceec6c8a4f8951f0f.png" Selector="&lt;html app='chrome.exe' title='*Crunchbase Company Profile &amp;amp; Funding' /&gt;" Url="[&quot;https://www.crunchbase.com/organization/&quot; + company]" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="585.6,772.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <ui:PowerPointApplicationScope Password="{x:Null}" AutoSave="False" CreateIfNotExists="True" DisplayName="Use PowerPoint Presentation" sap:VirtualizedContainerService.HintSize="644,1258.4" sap2010:WorkflowViewState.IdRef="PowerPointApplicationScope_1" PresentationPath="[pptTemplate]">
+      <ui:PowerPointApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:IPresentationQuickHandle">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:IPresentationQuickHandle" Name="preso" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="552,1008" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510.4,915.2" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="475.2,836.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="ui:IPresentationQuickHandle" Name="preso" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:FindAndReplaceTextInPresentation NumberOfReplacements="{x:Null}" DisplayName="Replace Text in Presentation" sap:VirtualizedContainerService.HintSize="433.6,208.8" sap2010:WorkflowViewState.IdRef="FindAndReplaceTextInPresentation_1" MatchCase="False" Presentation="[preso]" ReplaceAll="True" ReplaceWith="[company]" SearchFor="&lt;Company Name&gt;" WholeWordsOnly="False" />
+                  <ui:ReplaceShapeWithMedia DisplayName="Add Image/Video to Slide" sap:VirtualizedContainerService.HintSize="433.6,236.8" sap2010:WorkflowViewState.IdRef="ReplaceShapeWithMedia_1" Media="[screenshotPath]" Presentation="[preso]" ShapeName="stockChart" SlideIndex="0" />
+                  <ui:SavePresentationFileAs DisplayName="Save PowerPoint File As" FilePath="[company + &quot;.ppt&quot;]" sap:VirtualizedContainerService.HintSize="433.6,218.4" sap2010:WorkflowViewState.IdRef="SavePresentationFileAs_1" Presentation="[preso]" />
+                </Sequence>
+              </ui:CommentOut.Body>
+            </ui:CommentOut>
+          </Sequence>
+        </ActivityAction>
+      </ui:PowerPointApplicationScope.Body>
+    </ui:PowerPointApplicationScope>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="644,22.4" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="550.4,694.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
@@ -173,7 +284,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <upadb:PowerPointApplicationCard Password="{x:Null}" PresentationPath="{x:Null}" AutoSave="False" CreateIfNotExists="True" DisplayName="Use PowerPoint Presentation" sap:VirtualizedContainerService.HintSize="508.8,601.6" sap2010:WorkflowViewState.IdRef="PowerPointApplicationCard_1">
+          <upadb:PowerPointApplicationCard Password="{x:Null}" AutoSave="False" CreateIfNotExists="True" DisplayName="Use PowerPoint Presentation" sap:VirtualizedContainerService.HintSize="508.8,601.6" sap2010:WorkflowViewState.IdRef="PowerPointApplicationCard_1" PresentationPath="demo.ppt" TemplatePath="templates\Crunchbase_PublicCompanyOverview_Template.pptx" UseThemeFile="True">
             <upadb:PowerPointApplicationCard.Body>
               <ActivityAction x:TypeArguments="ui:IPresentationQuickHandle">
                 <ActivityAction.Argument>
@@ -185,13 +296,19 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <upab:InsertTextInPresentationX Presentation="{x:Null}" ShapeName="{x:Null}" SlideIndex="{x:Null}" Text="{x:Null}" DisplayName="Insert Text" sap:VirtualizedContainerService.HintSize="433.6,236.8" sap2010:WorkflowViewState.IdRef="InsertTextInPresentationX_1" />
+                  <upab:InsertTextInPresentationX Presentation="{x:Null}" ShapeName="{x:Null}" DisplayName="Insert Text" sap:VirtualizedContainerService.HintSize="433.6,236.8" sap2010:WorkflowViewState.IdRef="InsertTextInPresentationX_1" SlideIndex="0" Text="[company]" />
                 </Sequence>
               </ActivityAction>
             </upadb:PowerPointApplicationCard.Body>
           </upadb:PowerPointApplicationCard>
         </Sequence>
       </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
   </Sequence>
 </Activity>

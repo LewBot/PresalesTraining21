@@ -6,6 +6,7 @@
     "UiPath.Excel.Activities": "[2.9.5]",
     "UiPath.Mail.Activities": "[1.9.5]",
     "UiPath.PowerPoint.Activities": "[0.1.0-preview]",
+    "UiPath.Presentations.Activities": "[1.1.4]",
     "UiPath.System.Activities": "[20.10.3]",
     "UiPath.UIAutomation.Activities": "[20.10.8]"
   },
